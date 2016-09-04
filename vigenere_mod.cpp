@@ -2,13 +2,16 @@
 // Deret Jabat Tangan Modifikasi => 1, -2, 3, -6, 10, -15, ....
 // Formula Umum Jabat Tangan => Un = n (n + 1)
 // Karakter Chiper ke-n = karakter pesan ke-n + karakter key vigenere ke-n + Un (-1^(n-1))
+// Loop sampai n = 15 lalu kembali ke n = 1.
 
 #include <bits/stdc++.h>
 
 using namespace std;
 
 int deretJabatTanganModf(int n) {
+    n = (n % 15) + 1;
     int deret = n * (n+1) / 2 ;
+    deret = deret % 255;
     deret = (n % 2 == 0) ? (deret * -1) : deret;
     return deret;
 }
@@ -80,11 +83,11 @@ string encryptDecryptVigExt(string pesan, string key, bool isEncrypt) {
         char k = key[i % k_size];
         if (isEncrypt)
         {
-            char temp = p + k + deretJabatTanganModf(i+1);
+            char temp = (p + k + deretJabatTanganModf(i+1));
             hasil[i] = temp;
         }
         else {
-            char temp = p - k - deretJabatTanganModf(i+1);
+            char temp = (p - k - deretJabatTanganModf(i+1));
             hasil[i] = temp;    
         }
     }

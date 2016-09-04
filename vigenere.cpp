@@ -2,6 +2,21 @@
 
 using namespace std;
 
+string upperText(string s) {
+    string hasil = "";
+    char c;
+    for (int i = 0; i < s.size(); ++i)
+    {
+        c = s[i];
+        if( 97 <= c && c <= 122 ) {
+            c = c - 32;
+        }
+        hasil.push_back(c);
+    }
+    return hasil;
+}
+
+
 string tampilanString(string s, int pilihan){
     string hasil = "";
     if(pilihan == 1) {
@@ -128,6 +143,8 @@ int main(){
         }
         fileinput.close();
     }
+    pesan = upperText(pesan);
+    key = upperText(key);
     cout << endl;
     if(pilihan == 1){
         cout << "======== Tampilan Keluaran ========" << endl;
@@ -175,6 +192,7 @@ int main(){
             cout << encryptdecryptVigenere(pesan, key, false, 1) << endl;
         }
     }
-
+    string a;
+    cin >> a;
     return 0;
 }

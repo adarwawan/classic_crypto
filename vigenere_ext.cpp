@@ -99,7 +99,7 @@ int main()
 {
     string pesan, key, namafile;
     int pilihan, pilihankeluaran, pilihanmasukkan;
-    cout << "======== Vigenere Standard ======== " << endl;
+    cout << "======== Vigenere Extended ======== " << endl;
     cout << "Pilihan Masukkan" << endl;
     cout << "1. Masukkan pengguna" << endl;
     cout << "2. File" << endl;
@@ -137,7 +137,7 @@ int main()
         pesan = bacaFileText(namafile);       
     }
     cout << endl;
-    if(pilihan == 1) { //Enkripsi
+    if (pilihan == 1) { //Enkripsi
         string hasil = encryptDecryptVigExt(pesan, key, true);
         cout << "======== Tampilan Keluaran ========" << endl;
         cout << "1. Apa adanya" << endl;
@@ -185,5 +185,7 @@ int main()
             cout << tampilkanString(hasil, 1) << endl;
         }
     }
+    string a;
+    cin >> a;
     return 0;
 }

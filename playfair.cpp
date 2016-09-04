@@ -2,6 +2,20 @@
 
 using namespace std;
 
+string upperText(string s) {
+    string hasil = "";
+    char c;
+    for (int i = 0; i < s.size(); ++i)
+    {
+        c = s[i];
+        if( 97 <= c && c <= 122 ) {
+            c = c - 32;
+        }
+        hasil.push_back(c);
+    }
+    return hasil;
+}
+
 string encryptdecrypt(vector<vector<char> > mc, vector<vector<int> > vc, char c1, char c2, bool encrypt){
     string hasil;
     int x1 = vc[c1 - 65][0];
@@ -159,7 +173,7 @@ string encryptdecryptPlayFair(string s, string key, bool encrypt, int pilihan){
 
 int pilihanPenyimpanan(){
     int pilihanpenyimpanan;
-    cout << "Penyimpanan chiper text :" << endl;
+    cout << "======== Penyimpanan chiper text ========" << endl;
     cout << "1. Keluaran pada command prompt" << endl;
     cout << "2. Keluaran pada file" << endl;
     cout << "Masukkan pilihan: ";
@@ -175,6 +189,7 @@ int pilihanPenyimpanan(){
 int main(){
     string pesan, key, namafile;
     int pilihan, pilihankeluaran, pilihanmasukkan;
+    cout << "======== Playfair Cipher ======== " << endl;
     cout << "Pilihan Masukkan" << endl;
     cout << "1. Masukkan pengguna" << endl;
     cout << "2. File" << endl;
@@ -189,7 +204,8 @@ int main(){
         cout << "Masukkan nama file dengan ekstensi file (contoh: input.txt): ";
         cin >> namafile;
     }
-    cout << "Pilihan" << endl;
+    cout << endl;
+    cout << "======== Pilihan ========" << endl;
     cout << "1. Enkripsi" << endl;
     cout << "2. Dekripsi" << endl;
     cout << "Masukkan pilihan: ";
@@ -199,6 +215,8 @@ int main(){
         cout << "Masukkan pilihan: ";
         cin >> pilihan;
     }
+    cout << endl;
+    cout << "======== Proses ========" << endl;
     cout << "Masukkan key: ";
     getline(cin, key);
     getline(cin, key);
@@ -215,8 +233,11 @@ int main(){
         }
         fileinput.close();
     }
+    pesan = upperText(pesan);
+    key = upperText(key);
+    cout << endl;
     if(pilihan == 1){
-        cout << "Tampilan Keluaran :" << endl;
+        cout << "======== Tampilan Keluaran ========" << endl;
         cout << "1. Apa adanya" << endl;
         cout << "2. Tanpa spasi" << endl;
         cout << "3. Kelompok 5 huruf" << endl;
@@ -235,6 +256,12 @@ int main(){
             fileoutput << encryptdecryptPlayFair(pesan, key, true, pilihankeluaran);
             fileoutput.close();
         } else {
+            cout << "======== Hasil ========" << endl;
+            cout << "Pesan : " << endl;
+            cout << pesan << endl;
+            cout << "Kunci : " << endl;
+            cout << key << endl;
+            cout << "Hasil : " << endl;
             cout << encryptdecryptPlayFair(pesan, key, true, pilihankeluaran) << endl;
         }
     } else {
@@ -246,10 +273,17 @@ int main(){
             fileoutput << encryptdecryptPlayFair(pesan, key, false, 1);
             fileoutput.close();
         } else {
+            cout << "======== Hasil ========" << endl;
+            cout << "Pesan : " << endl;
+            cout << pesan << endl;
+            cout << "Kunci : " << endl;
+            cout << key << endl;
+            cout << "Hasil : " << endl;
             cout << encryptdecryptPlayFair(pesan, key, false, 1) << endl;
         }
     }
-
+    string a;
+    cin >> a;
     return 0;
 }
 
