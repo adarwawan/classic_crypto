@@ -105,7 +105,7 @@ int main(){
         cout << "Masukkan pesan: ";
         getline(cin, pesan);
     } else {
-        ifstream fileinput(namafile);
+        ifstream fileinput(namafile.c_str());
         string text;
         pesan = "";
         while(getline(fileinput, text)){
@@ -130,7 +130,7 @@ int main(){
         if(pilihanpenyimpanan == 2){
             cout << "Masukkan nama file: ";
             cin >> namafile;
-            ofstream fileoutput(namafile);
+            ofstream fileoutput(namafile.c_str());
             fileoutput << encryptdecryptVigenere(pesan, key, true, pilihankeluaran);
             fileoutput.close();
         } else {
@@ -141,7 +141,7 @@ int main(){
         if(pilihanpenyimpanan == 2){
             cout << "Masukkan nama file: ";
             cin >> namafile;
-            ofstream fileoutput(namafile);
+            ofstream fileoutput(namafile.c_str());
             fileoutput << encryptdecryptVigenere(pesan, key, false, 1);
             fileoutput.close();
         } else {
@@ -151,4 +151,3 @@ int main(){
 
     return 0;
 }
-
