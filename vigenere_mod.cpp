@@ -93,7 +93,7 @@ string encryptDecryptVigExt(string pesan, string key, bool isEncrypt) {
 
 int pilihanPenyimpanan(){
     int pilihanpenyimpanan;
-    cout << "Penyimpanan chiper text :" << endl;
+    cout << "======== Penyimpanan chiper text ========" << endl;
     cout << "1. Keluaran pada command prompt" << endl;
     cout << "2. Keluaran pada file" << endl;
     cout << "Masukkan pilihan: ";
@@ -110,6 +110,7 @@ int main()
 {
     string pesan, key, namafile;
     int pilihan, pilihankeluaran, pilihanmasukkan;
+    cout << "======== Vigenere Modifikasi ======== " << endl;
     cout << "Pilihan Masukkan" << endl;
     cout << "1. Masukkan pengguna" << endl;
     cout << "2. File" << endl;
@@ -124,7 +125,8 @@ int main()
         cout << "Masukkan nama file dengan ekstensi file (contoh: input.txt): ";
         cin >> namafile;
     }
-    cout << "Pilihan" << endl;
+    cout << endl;
+    cout << "======== Pilihan ========" << endl;
     cout << "1. Enkripsi" << endl;
     cout << "2. Dekripsi" << endl;
     cout << "Masukkan pilihan: ";
@@ -134,7 +136,8 @@ int main()
         cout << "Masukkan pilihan: ";
         cin >> pilihan;
     }
-
+    cout << endl;
+    cout << "======== Proses ========" << endl;
     cout << "Masukkan key: ";
     getline(cin, key);
     getline(cin, key);
@@ -144,10 +147,10 @@ int main()
     } else {
         pesan = bacaFileText(namafile);       
     }
-
+    cout << endl;
     if(pilihan == 1) { //Enkripsi
         string hasil = encryptDecryptVigExt(pesan, key, true);
-        cout << "Tampilan Keluaran :" << endl;
+        cout << "======== Tampilan Keluaran ========" << endl;
         cout << "1. Apa adanya" << endl;
         cout << "2. Tanpa spasi" << endl;
         cout << "3. Kelompok 5 huruf" << endl;
@@ -166,17 +169,13 @@ int main()
             f << tampilkanString(hasil, pilihanpenyimpanan);
             f.close();
         } else {
-            cout << "==== Hasil ====" << endl;
+            cout << "======== Hasil ========" << endl;
             cout << "Pesan : " << endl;
             cout << pesan << endl;
-            printInHex(pesan);
             cout << "Kunci : " << endl;
             cout << key << endl;
-            printInHex(key);
             cout << "Hasil : " << endl;
             cout << tampilkanString(hasil, pilihanpenyimpanan) << endl;
-            printInHex(tampilkanString(hasil, 1));
-            cout << "===============" << endl;
         }
     } else { // Dekripsi
         string hasil = encryptDecryptVigExt(pesan, key, false);
@@ -188,17 +187,13 @@ int main()
             f << tampilkanString(hasil, 1);
             f.close();
         } else {
-            cout << "==== Hasil ====" << endl;
+            cout << "======== Hasil ========" << endl;
             cout << "Pesan : " << endl;
             cout << pesan << endl;
-            printInHex(pesan);
             cout << "Kunci : " << endl;
             cout << key << endl;
-            printInHex(key);
             cout << "Hasil : " << endl;
             cout << tampilkanString(hasil, 1) << endl;
-            printInHex(tampilkanString(hasil, 1));
-            cout << "===============" << endl;
         }
     }
     return 0;

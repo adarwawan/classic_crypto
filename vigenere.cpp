@@ -28,7 +28,7 @@ void printInHex(string s) {
     for (int i = 0; i < s.size(); ++i)
     {
         c = s[i];
-        printf("%x ", ch & 0xff);
+        printf("%x ", c & 0xff);
     }
     printf("\n");
 }
@@ -67,7 +67,7 @@ string encryptdecryptVigenere(string pesan, string key, bool encrypt, int piliha
 
 int pilihanPenyimpanan(){
     int pilihanpenyimpanan;
-    cout << "Penyimpanan chiper text :" << endl;
+    cout << "======== Penyimpanan chiper text ========" << endl;
     cout << "1. Keluaran pada command prompt" << endl;
     cout << "2. Keluaran pada file" << endl;
     cout << "Masukkan pilihan: ";
@@ -84,6 +84,7 @@ int pilihanPenyimpanan(){
 int main(){
     string pesan, key, namafile;
     int pilihan, pilihankeluaran, pilihanmasukkan;
+    cout << "======== Vigenere Standard ======== " << endl;
     cout << "Pilihan Masukkan" << endl;
     cout << "1. Masukkan pengguna" << endl;
     cout << "2. File" << endl;
@@ -98,7 +99,8 @@ int main(){
         cout << "Masukkan nama file dengan ekstensi file (contoh: input.txt): ";
         cin >> namafile;
     }
-    cout << "Pilihan" << endl;
+    cout << endl;
+    cout << "======== Pilihan ========" << endl;
     cout << "1. Enkripsi" << endl;
     cout << "2. Dekripsi" << endl;
     cout << "Masukkan pilihan: ";
@@ -108,6 +110,8 @@ int main(){
         cout << "Masukkan pilihan: ";
         cin >> pilihan;
     }
+    cout << endl;
+    cout << "======== Proses ========" << endl;
     cout << "Masukkan key: ";
     getline(cin, key);
     getline(cin, key);
@@ -124,8 +128,9 @@ int main(){
         }
         fileinput.close();
     }
+    cout << endl;
     if(pilihan == 1){
-        cout << "Tampilan Keluaran :" << endl;
+        cout << "======== Tampilan Keluaran ========" << endl;
         cout << "1. Apa adanya" << endl;
         cout << "2. Tanpa spasi" << endl;
         cout << "3. Kelompok 5 huruf" << endl;
@@ -144,6 +149,12 @@ int main(){
             fileoutput << encryptdecryptVigenere(pesan, key, true, pilihankeluaran);
             fileoutput.close();
         } else {
+            cout << "======== Hasil ========" << endl;
+            cout << "Pesan : " << endl;
+            cout << pesan << endl;
+            cout << "Kunci : " << endl;
+            cout << key << endl;
+            cout << "Hasil : " << endl;
             cout << encryptdecryptVigenere(pesan, key, true, pilihankeluaran) << endl;
         }
     } else {
@@ -155,6 +166,12 @@ int main(){
             fileoutput << encryptdecryptVigenere(pesan, key, false, 1);
             fileoutput.close();
         } else {
+            cout << "======== Hasil ========" << endl;
+            cout << "Pesan : " << endl;
+            cout << pesan << endl;
+            cout << "Kunci : " << endl;
+            cout << key << endl;
+            cout << "Hasil : " << endl;
             cout << encryptdecryptVigenere(pesan, key, false, 1) << endl;
         }
     }

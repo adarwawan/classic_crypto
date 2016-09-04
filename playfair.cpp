@@ -36,7 +36,6 @@ string encryptdecrypt(vector<vector<char> > mc, vector<vector<int> > vc, char c1
         hasil.push_back(mc[x1][y2]);
         hasil.push_back(mc[x2][y1]);
     }
-    /* cout << mc[x1][y1] << " " << mc[x2][y2] << " " << hasil << endl; */
     return hasil;
 }
 
