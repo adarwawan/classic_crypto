@@ -23,6 +23,16 @@ string tampilanString(string s, int pilihan){
     return hasil;
 }
 
+void printInHex(string s) {
+    char c;
+    for (int i = 0; i < s.size(); ++i)
+    {
+        c = s[i];
+        printf("%x ", ch & 0xff);
+    }
+    printf("\n");
+}
+
 string encryptdecryptVigenere(string pesan, string key, bool encrypt, int pilihantampilan) {
     string keystring = "";
     for(int i = 0; i < key.size(); ++i) {

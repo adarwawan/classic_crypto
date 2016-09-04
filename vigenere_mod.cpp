@@ -1,6 +1,17 @@
+// Modifikasi Menggunakan Deret Jabat Tangan dengan modifikasi
+// Deret Jabat Tangan Modifikasi => 1, -2, 3, -6, 10, -15, ....
+// Formula Umum Jabat Tangan => Un = n (n + 1)
+// Karakter Chiper ke-n = karakter pesan ke-n + karakter key vigenere ke-n + Un (-1^(n-1))
+
 #include <bits/stdc++.h>
 
 using namespace std;
+
+int deretJabatTanganModf(int n) {
+    int deret = n * (n+1) / 2 ;
+    deret = (n % 2 == 0) ? (deret * -1) : deret;
+    return deret;
+}
 
 string tampilkanString(string s, int pilihan) {
     string hasil = "";
@@ -69,11 +80,11 @@ string encryptDecryptVigExt(string pesan, string key, bool isEncrypt) {
         char k = key[i % k_size];
         if (isEncrypt)
         {
-            char temp = p + k;
+            char temp = p + k + deretJabatTanganModf(i+1);
             hasil[i] = temp;
         }
         else {
-            char temp = p - k;
+            char temp = p - k - deretJabatTanganModf(i+1);
             hasil[i] = temp;    
         }
     }
@@ -152,7 +163,7 @@ int main()
             cout << "Masukkan nama file: ";
             cin >> namafile;
             ofstream f(namafile.c_str(), ios::out|ios::binary);
-            f << hasil;
+            f << tampilkanString(hasil, pilihanpenyimpanan);
             f.close();
         } else {
             cout << "==== Hasil ====" << endl;
@@ -170,11 +181,11 @@ int main()
     } else { // Dekripsi
         string hasil = encryptDecryptVigExt(pesan, key, false);
         int pilihanpenyimpanan = pilihanPenyimpanan();
-        if (pilihanpenyimpanan == 2){
+        if(pilihanpenyimpanan == 2){
             cout << "Masukkan nama file: ";
             cin >> namafile;
             ofstream f(namafile.c_str(), ios::out|ios::binary);
-            f << hasil;
+            f << tampilkanString(hasil, 1);
             f.close();
         } else {
             cout << "==== Hasil ====" << endl;
