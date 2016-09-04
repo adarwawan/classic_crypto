@@ -43,10 +43,11 @@ string encryptdecrypt(vector<vector<char> > mc, vector<vector<int> > vc, char c1
 string konversipesan(vector<vector<char> > mc, vector<vector<int> > vc, string s, bool encrypt){
     string digram = "";
     char temp = 0;
+    string temps = "";
     int i = 0;
     while(i < s.size()){
-        if(s[i] >= 65 && s[i] <= 90){
             char c = s[i];
+        if(c >= 65 && c <= 90){
             c = c == 'J' ? 'I' : c;
             if(temp == 0) {
                 temp = c;
@@ -55,13 +56,17 @@ string konversipesan(vector<vector<char> > mc, vector<vector<int> > vc, string s
                 if(s[i] == temp){
                     if(encrypt == true){
                         digram += encryptdecrypt(mc, vc, temp, 'Z', true);
+                        digram += temps;
+                        temps = "";
                     } else {
                         digram += encryptdecrypt(mc, vc, temp, 'Z', false);
                     }
                     temp = c;
                 } else {
                     if(encrypt == true){
-                        digram += encryptdecrypt(mc, vc, temp, c, true);
+                        string tempdig = encryptdecrypt(mc, vc, temp, c, true);
+                        digram += tempdig[0] + temps + tempdig[1];
+                        temps = "";
                     } else {
                         digram += encryptdecrypt(mc, vc, temp, c, false);
                     }
@@ -69,7 +74,11 @@ string konversipesan(vector<vector<char> > mc, vector<vector<int> > vc, string s
                 }
             }
         } else {
-            digram += s[i];
+            if(temp == 0){
+                digram += s[i];
+            } else {
+                temps += c;
+            }
         }
         ++i;
     }
