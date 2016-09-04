@@ -45,7 +45,7 @@ string konversipesan(vector<vector<char> > mc, vector<vector<int> > vc, string s
     string temps = "";
     int i = 0;
     while(i < s.size()){
-            char c = s[i];
+        char c = s[i];
         if(c >= 65 && c <= 90){
             c = c == 'J' ? 'I' : c;
             if(temp == 0) {
@@ -55,20 +55,21 @@ string konversipesan(vector<vector<char> > mc, vector<vector<int> > vc, string s
                 if(s[i] == temp){
                     if(encrypt == true){
                         digram += encryptdecrypt(mc, vc, temp, 'Z', true);
-                        digram += temps;
-                        temps = "";
                     } else {
                         digram += encryptdecrypt(mc, vc, temp, 'Z', false);
                     }
+                    digram += temps;
+                    temps = "";
                     temp = c;
                 } else {
+                    string tempdig;
                     if(encrypt == true){
-                        string tempdig = encryptdecrypt(mc, vc, temp, c, true);
-                        digram += tempdig[0] + temps + tempdig[1];
-                        temps = "";
+                        tempdig = encryptdecrypt(mc, vc, temp, c, true);
                     } else {
-                        digram += encryptdecrypt(mc, vc, temp, c, false);
+                        tempdig = encryptdecrypt(mc, vc, temp, c, false);
                     }
+                    digram += tempdig[0] + temps + tempdig[1];
+                    temps = "";
                     temp = 0;
                 }
             }
@@ -242,10 +243,10 @@ int main(){
             cout << "Masukkan nama file: ";
             cin >> namafile;
             ofstream fileoutput(namafile.c_str());
-            fileoutput << encryptdecryptPlayFair(pesan, key, false, 2);
+            fileoutput << encryptdecryptPlayFair(pesan, key, false, 1);
             fileoutput.close();
         } else {
-            cout << encryptdecryptPlayFair(pesan, key, false, 2) << endl;
+            cout << encryptdecryptPlayFair(pesan, key, false, 1) << endl;
         }
     }
 
